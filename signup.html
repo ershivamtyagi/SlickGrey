@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<title>DocumentProvider</title>
+
+		<style>
+		.form-container 
+		{
+   		border: 1px solid #575451;
+   		background: #999999;
+   		background: -webkit-gradient(linear, left top, left bottom, from(#4d4d4c), to(#999999));
+   		background: -webkit-linear-gradient(top, #4d4d4c, #999999);
+   		background: -moz-linear-gradient(top, #4d4d4c, #999999);
+   		background: -ms-linear-gradient(top, #4d4d4c, #999999);
+   		background: -o-linear-gradient(top, #4d4d4c, #999999);
+   		background-image: -ms-linear-gradient(top, #4d4d4c 0%, #999999 100%);
+   		-webkit-border-radius: 8px;
+   		-moz-border-radius: 8px;
+   		border-radius: 8px;
+   		-webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   		-moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   		box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   		font-family: 'Helvetica Neue',Helvetica,sans-serif;
+   		text-decoration: none;
+   		vertical-align: middle;
+   		min-width:300px;
+   		padding:20px;
+   		width:300px;
+   		}
+		</style>
+
+		<script>
+		var request;
+		function checkuser()
+		{
+			var cu = document.signupform.choose.value;
+				
+			if(cu.length==0)
+			{
+				alert("Error! Choose name can't leave blank");
+				document.signupform.choose.focus();
+				return false; 
+			}
+			else
+			{
+				var url = "checkchooseuser.jsp?chooseuser="+cu;	
+			
+				if(window.XMLHttpRequest)
+				{  
+				request = new XMLHttpRequest();  
+				}  
+				else if(window.ActiveXObject)
+				{ 	 	
+				request = new ActiveXObject("Microsoft.XMLHTTP");  
+				}  
+  
+				try  
+				{  
+				request.onreadystatechange = getInfo;  
+				request.open("GET",url,true);  
+				request.send();  
+				}  
+				catch(ex)  
+				{  
+					alert("Unable to connect to server");  
+				}  
+			}
+		}
+		
+		function getInfo()
+		{
+			if(request.readyState==4)
+			{  
+				var val = request.responseText;
+				document.getElementById('amit').innerHTML = val;
+				
+				if(document.getElementById('amit').innerText == "already in use")
+				{
+				document.signupform.choose.value="";
+				}
+			}  
+		}
+
+		function phonenumber()  
+		{  
+			var phoneno = /^\d{10}$/;  
+  			if(document.signupform.mobile.value.match(phoneno))  
+  			{  
+      			}  
+  			else  
+  			{  
+     				alert("Not a valid Mobile Number must contain 10 Digits"); 
+				document.signupform.mobile.value="";
+				document.signupform.mobile.focus();
+     			}    		 
+		}  
+
+		function rat()
+		{
+			alert("Password length must be greater than 6 letters with atleast 1 numeric and lower case alphabet and upper case alphabet letter");
+		}
+
+		function cat(form)
+		{
+			var first = document.signupform.first.value;
+			var last = document.signupform.last.value;
+			var gender = document.signupform.gender.value;
+			var dob = document.signupform.dob.value;
+			var address = document.signupform.address.value;
+			var country = document.signupform.country.value;
+			var mobile = document.signupform.mobile.value;
+			var email = document.signupform.email.value;
+			var choose = document.signupform.choose.value;
+			var password = document.signupform.password.value;
+			var cpassword = document.signupform.cpassword.value;
+			
+			if(first.length==0)
+			{
+				alert("Error! First name can't leave blank");
+				document.signupform.first.focus();
+				return false; 
+			}	
+			if(last.length==0)
+			{
+				alert("Error! Last name can't leave blank");
+				document.signupform.last.focus();
+				return false; 
+			}
+			if(gender.length==0)
+			{
+				alert("Error! Gender can't leave blank");
+				return false; 
+			}
+			if(dob.length==0)
+			{
+				alert("Error! DOB can't leave blank");
+				document.signupform.dob.focus();
+				return false; 
+			}
+			if(address.length==0)
+			{
+				alert("Error! Address can't leave blank");
+				document.signupform.address.focus();
+				return false; 
+			}
+			if(country.length==0)
+			{
+				alert("Error! Country can't leave blank");
+				document.signupform.country.focus();
+				return false; 
+			}
+			if(mobile.length==0)
+			{
+				alert("Error! Mobile can't leave blank");
+				document.signupform.mobile.focus();
+				return false; 
+			}
+			if(email.length==0)
+			{
+				alert("Error! Email can't leave blank");
+				document.signupform.email.focus();
+				return false; 
+			}
+			if(choose.length==0)
+			{
+				alert("Error! Choose name can't leave blank");
+				document.signupform.choose.focus();
+				return false; 
+			}
+			if(password.length==0)
+			{
+				alert("Error! Password can't leave blank");
+				document.signupform.password.focus();
+				return false; 
+			}
+			if(cpassword.length==0)
+			{
+				alert("Error! Confirm Password can't leave blank");
+				document.signupform.cpassword.focus();
+				return false; 
+			}
+
+			if(form.password.value != "" && form.password.value == form.cpassword.value)
+			{
+	      		if(form.password.value.length < 6)
+			{
+	        	alert("Error: Password must contain at least six characters!");
+	        	form.password.focus();
+	        	return false;
+	      		}
+	      		if(form.password.value == form.choose.value)
+			{
+	        	alert("Error: Password must be different from Choose Name!");
+	        	form.password.focus();
+        		return false;
+      			}
+      	
+			re = /[0-9]/;
+      			if(!re.test(form.password.value))
+			{
+        		alert("Error: password must contain at least one number (0-9)!");
+       			form.password.focus();
+        		return false;
+      			}
+      			re = /[a-z]/;
+      			if(!re.test(form.password.value))
+			{
+        		alert("Error: password must contain at least one lowercase letter (a-z)!");
+        		form.password.focus();
+        		return false;
+      			}
+	      		re = /[A-Z]/;
+	      		if(!re.test(form.password.value))
+			{
+	        	alert("Error: password must contain at least one uppercase letter (A-Z)!");
+	        	form.password.focus();
+	        	return false;
+	      		}
+    			}
+			else
+			{
+      			alert("Error: Please check that you've entered and confirmed your password!");
+      			form.password.focus();
+      			return false;
+    			}
+			
+			return true;						
+		}
+
+		</script>
+	</head>
+
+<body>
+<div id="container">
+
+	<div id="header">
+        	<h1>Document<span class="off">Provider</span></h1>
+            	<h2></h2>
+        </div>   
+        
+       	<div id="menu">
+        	<ul>
+        		<li class="menuitem"><a href="home.html">Home</a></li>
+                	<li class="menuitem"><a href="download_documents.jsp">Download Documents</a></li>
+                	<li class="menuitem"><a href="about.html">About Us</a></li>
+              		<li class="menuitem"><a href="contact.html">Contact Us</a></li>
+            	</ul>
+        </div>
+        
+        <div id="leftmenu">
+
+        	<div id="leftmenu_top"></div>
+			<div id="leftmenu_main">    
+                       	        <h3>Links</h3>
+                        
+                	<ul>
+                    		<li><a href="usersignin.jsp">SignIn</a></li>
+                    		<li><a href="#">SignUp</a></li>
+                	</ul>
+		</div>
+                               
+              	<div id="leftmenu_bottom"></div>
+        	</div>
+                
+        
+		<div id="content">
+        
+        
+        	<div id="content_top"></div>
+       			<div id="content_main">
+        			<h2></h2>
+
+				<form name="signupform" class="form-container" action="signup.jsp" onsubmit="return cat(this)">
+					<table>
+						<tr><td><h2>Personal Details</h2></td><td></td></tr>
+						<tr><td><b>First Name</b></td><td><label><b>Last Name</b></label></td></tr>
+						<tr><td><input type="text" name="first"></input></td><td><input type="text" name="last"></input></td></tr>
+						<tr></tr><tr></tr>
+						<tr><td><label><b>Gender</b></label></td><td><label><b>Date of Birth</b></label></td></tr>
+						<tr><td><input type="radio" name="gender" value="male">Male</input>&nbsp;&nbsp;&nbsp<input type="radio" name="gender" value="female">Female</input></td><td><input type="date" name="dob"></input></td></tr>
+						<tr></tr><tr></tr>
+						<tr><td><label><b>Address</b></label></td><td><label><b>Country</b></label></td></tr>
+						<tr><td><input type="text" name="address"></input></td><td><input type="text" name="country"></input></td></tr>
+						<tr></tr><tr></tr>
+						<tr><td><label><b>Mobile</b></label></td><td><label><b>Current Email</b></label></td></tr>
+						<tr><td><input type="text" name="mobile" onchange="phonenumber()"></input></td><td><input type="email" name="email"></input></td></tr>
+						<tr></tr><tr></tr>
+						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>					
+						<tr><td><label><h2>Login Details</h2></label></td><td></td></tr>
+						<tr><td><label><b>Choose Login Name</b></label></td><td></td></tr>
+						<tr><td><input type="text" name="choose" onchange="checkuser()"></input></td><td><span id="amit"></span></td></tr>
+						<tr><td><a href="#" onclick="checkuser()">Check Availability</a></td><td></td></tr>
+						<tr><td><label><b>Password</b></label></td><td><label><b>Confirm Password</b></label></td></tr>
+						<tr><td><input type="password" name="password"></input></td><td><input type="password" name="cpassword"></input></td></tr>
+						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>					
+						<tr><td><input type="submit" value="Submit"></input>&nbsp;&nbsp;&nbsp;<input type="reset" value="Reset"></input></td></tr>
+							
+					</table>
+				</form>
+        		</div>
+
+        	<div id="content_bottom"></div>
+            	
+      		</div>
+</div>
+</body>
+
+</html>

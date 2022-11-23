@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>SlickGray | florida web design</title>
+
+<script>
+	function cat(x)
+	{
+	var tab = "tab"+x;
+	document.getElementById('tab1').style.display = 'none';
+	document.getElementById('tab2').style.display = 'none';
+	document.getElementById('tab3').style.display = 'none';
+	document.getElementById(tab).style.display = 'block';
+	}
+</script>
+
+</head>
+
+<body>
+<div id="container">
+		<div id="header">
+        	<h1>Document<span class="off">Provider</span></h1>
+            <h2>Welcome,
+		<%
+			String username = (String)session.getAttribute("username");
+			out.print(" "+username);
+		%>
+		</h2>
+        </div>   
+        
+        <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="logout.jsp">Logout</a></li>
+                </ul>
+        </div>
+        
+        <div id="leftmenu">
+
+        <div id="leftmenu_top"></div>
+
+				<div id="leftmenu_main">    
+                
+                <h3>Links</h3>
+                        
+                <ul>
+                    <li><a href="usersettings.jsp">Settings</a></li>
+                    <li><a href="userupload.jsp">Upload Documents</a></li>
+                    <li><a href="userdownload.jsp">Download Documents</a></li>
+                    <li><a href="usergenerateid.jsp">Generate ID</a></li>
+                    <li><a href="usercomposemail">Compose Mail</a></li>
+               </ul>
+</div>
+                
+                
+              <div id="leftmenu_bottom"></div>
+        </div>
+        
+          
+        
+		<div id="content">
+        
+        
+        <div id="content_top"></div>
+        <div id="content_main">
+        	
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" onclick="cat(1)"><img src="images/changepassword.png" width="80" height="90"></img></a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" onclick="cat(2)"><img src="images/editprofile.png" width="80" height="90"></img></a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" onclick="cat(3)"><img src="images/uploadphoto.png" width="80" height="90"></img></a>
+        
+
+		<form name="form1">
+			<table id="tab1" style="display:none">
+				<tr><td>Old Password</td><td><input type="text" name="op"></input></td></tr>
+				<tr><td>New Password</td><td><input type="text" name="np"></input></td></tr>
+				<tr><td></td><td><input type="submit" value="Change Password"></input></td></tr>
+			</table>
+		</form>	
+		
+		<form name="form2">
+			<table id="tab2" style="display:none">
+				<tr><td><label><h2>Personal Details</h2></label></td><td></td></tr>
+				<tr><td><label><b>First Name</b></label></td><td><label><b>Last Name</b></label></td></tr>
+				<tr><td><input type="text" name="first"></input></td><td><input type="text" name="last"></input></td></tr>
+				<tr></tr><tr></tr>
+				<tr><td><label><b>Gender</b></label></td><td><label><b>Date of Birth</b></label></td></tr>
+				<tr><td><input type="radio" name="gender" value="male">Male</input>&nbsp;&nbsp;&nbsp<input type="radio" name="gender" value="female">Female</input></td><td><input type="date" name="dob"></input></td></tr>
+				<tr></tr><tr></tr>
+				<tr><td><label><b>Address</b></label></td><td><label><b>Country</b></label></td></tr>
+				<tr><td><input type="text" name="address"></input></td><td><input type="text" name="country"></input></td></tr>
+				<tr></tr><tr></tr>
+				<tr><td><label><b>Mobile</b></label></td><td><label><b>Current Email</b></label></td></tr>
+				<tr><td><input type="text" name="mobile"></input></td><td><input type="email" name="email"></input></td></tr>
+				<tr></tr><tr></tr>
+				<tr><td><input type="submit" value="Update"></input>&nbsp;&nbsp;&nbsp;<input type="reset" value="Reset"></input></td></tr>
+			</table>
+		</form>
+
+		<form name="form3">
+			<table id="tab3" style="display:none">
+				<tr><td>Upload Photo</td><td></td></tr>
+				<tr><td><input type="file" name="photo"></input></td></tr>
+				<tr><td><input type="submit" value="Upload"></input></td></tr>
+			</table>
+		</form>	
+
+	</div>
+        <div id="content_bottom"></div>
+            
+            <div id="footer"><h3></h3></div>
+      </div>
+   </div>
+</body>
+</html>

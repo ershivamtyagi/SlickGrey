@@ -1,0 +1,18 @@
+<taglib>
+
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+
+	<tag>
+		<name>insertData</name>
+		<tag-class>career.tag.SignupInsert</tag-class>
+	
+		<attribute>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>	
+	</tag>
+
+</taglib>
